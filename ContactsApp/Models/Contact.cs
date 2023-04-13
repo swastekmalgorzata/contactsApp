@@ -20,7 +20,7 @@ namespace ContactsApp.Models
 
 		public string? Password { get; set; }
 
-		public Enum? Category { get; set; }
+		public Category Category { get; set; }
 
 		public DateOnly Birthday { get; set; }
 
