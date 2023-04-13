@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Mail;
 
 namespace ContactsApp.Models
@@ -17,6 +18,7 @@ namespace ContactsApp.Models
 
 		public Enum? Category { get; set; }
 
+		[Phone]
 		public string? PhoneNumber { get; set; }
 
 		public DateOnly Birthdat { get; set; }
