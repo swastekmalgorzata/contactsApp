@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ContactsApp.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -45,7 +46,7 @@ namespace ContactsApp
         }
 
         // POST api/<ContanctsController>
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<ActionResult<Contact>> Post(Contact contact)
         {
             _dbContext.Contacts.Add(contact);
@@ -54,7 +55,7 @@ namespace ContactsApp
         }
 
         // PUT api/<ContanctsController>/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public async Task<ActionResult> Put(int id,Contact contact)
         {
             if(id != contact.Id)
@@ -87,7 +88,7 @@ namespace ContactsApp
         }
 
         // DELETE api/<ContanctsController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             if (_dbContext.Contacts == null)
