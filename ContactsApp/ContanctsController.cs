@@ -47,11 +47,11 @@ namespace ContactsApp
 
         // POST api/<ContanctsController>
         [HttpPost, Authorize]
-        public async Task<ActionResult<Contact>> Post(Contact contact)
+        public async Task<ActionResult<Contact>> PostContact(Contact contact)
         {
             _dbContext.Contacts.Add(contact);
             await _dbContext.SaveChangesAsync();
-            return CreatedAtAction(nameof(contact), new { id = contact.Id }, contact);
+            return CreatedAtAction(nameof(GetContact), new { id = contact.Id }, contact);
         }
 
         // PUT api/<ContanctsController>/5
@@ -70,7 +70,7 @@ namespace ContactsApp
             }
             catch(DbUpdateConcurrencyException)
             {
-                if (ContactExists(id))
+                if (!ContactExists(id))
                 {
                     return NotFound();
                 }

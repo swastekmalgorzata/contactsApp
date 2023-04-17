@@ -15,22 +15,15 @@ namespace ContactsApp.Models
 		public string? Name { get; set; }
 
 		public string? Surname { get; set; }
-
-		public MailAddress? Email { get; set; }
+		[EmailAddress]
+		public string? Email { get; set; }
 
 		public string? Password { get; set; }
 
-		public Category Category { get; set; }
-
-		public DateOnly Birthday { get; set; }
+		public string? Category { get; set; }
+		public DateTime Birthday { get; set; }
 
 	}
 
-	public enum Category
-    {
-		Boss,
-		Coworker,
-		Other
-    }
 }
 

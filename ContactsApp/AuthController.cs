@@ -27,7 +27,7 @@ namespace ContactsApp
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest("zle dane");
             }
             var result = await _userManager.CreateAsync(
                 new IdentityUser { UserName = request.UserName, Email = request.Email },
@@ -53,24 +53,24 @@ namespace ContactsApp
             {
                 return BadRequest(ModelState);
             }
-
-            var managedUser = await _userManager.FindByEmailAsync(request.Email);
-            if(managedUser != null)
+            var userInDatabase = _context.Users.FirstOrDefault(u => u.Email == request.Email);
+            if (userInDatabase is null)
             {
-                return BadRequest();
+                return Unauthorized();
+            }
+            var managedUser = await _userManager.FindByEmailAsync(request.Email);
+            if(managedUser == null)
+            {
+                return BadRequest("zly uzytkownik");
             }
 
             var isPasswordOk = await _userManager.CheckPasswordAsync(managedUser, request.Password);
             if (!isPasswordOk)
             {
-                return BadRequest();
+                return BadRequest("zle haslo");
             }
 
-            var userInDatabase = _context.Users.FirstOrDefault(u => u.Email == request.Email);
-            if(userInDatabase is null)
-            {
-                return Unauthorized();
-            }
+            
             var accesToken = _tokenService.CreateToken(userInDatabase);
             await _context.SaveChangesAsync();
             return Ok(

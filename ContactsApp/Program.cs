@@ -13,7 +13,7 @@ builder.Services.AddDbContext<ContactsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ContactsContext")));
 
 builder.Services.AddDbContext<UserContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ContactsContext")));
+  options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext")));
 
 builder.Services.AddIdentityCore<IdentityUser>(options =>
     {
@@ -38,10 +38,10 @@ builder.Services
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = "contactsApi" ,
-            ValidAudience = "conatctsApi",
+            ValidIssuer = "ContactsApp" ,
+            ValidAudience = "ContactsApp",
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes("!secret!")),
+                Encoding.UTF8.GetBytes("!secret11111111!")),
         };
     });
 

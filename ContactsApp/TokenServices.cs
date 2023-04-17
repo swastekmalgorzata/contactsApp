@@ -29,8 +29,8 @@ namespace ContactsApp
 
         private JwtSecurityToken CreateJwtToken(List<Claim> claims, SigningCredentials credentials, DateTime expiration) =>
         new(
-            "contactsApi",
-            "contactsApi",
+            "ContactsApp",
+            "ContactsApp",
             claims,
             expires: expiration,
             signingCredentials: credentials
@@ -61,7 +61,7 @@ namespace ContactsApp
         {
             return new SigningCredentials(
                 new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes("!secret!")),
+                    Encoding.UTF8.GetBytes("!secret11111111!")),
                 SecurityAlgorithms.HmacSha256
                 );
                 
