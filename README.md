@@ -1,16 +1,16 @@
 # contactsApp  
 • opis poszczególnych klas i metod:
-  Klasa TokenServices jest odpowiedzialna za generowanie JWT
-  AuthController odpowiada za logowanie, rejestrację użytkownika oraz generowanie tokenu
-  Contacts zawiera w sobie CRUD dla kontaktu
+  //Klasa TokenServices jest odpowiedzialna za generowanie JWT
+  //AuthController odpowiada za logowanie, rejestrację użytkownika oraz generowanie tokenu
+  //Contacts zawiera w sobie CRUD dla kontaktu
   
 • wykorzystane biblioteki/pakiety,
-  Microsoft.AspNetCore.Authentication.JwtBearer
-  Microsoft.AspNetCore.Identity.EntityFrameworkCore
-  Microsoft.EntityFrameworkCore.Design
-  Microsoft.EntityFrameworkCore.SqlServer
-  Microsoft.EntityFrameworkCore.Tools
-  Microsoft.VisualStudio.Web.CodeGeneration.Design
+  //Microsoft.AspNetCore.Authentication.JwtBearer
+  //Microsoft.AspNetCore.Identity.EntityFrameworkCore
+  //Microsoft.EntityFrameworkCore.Design
+  //Microsoft.EntityFrameworkCore.SqlServer
+  //Microsoft.EntityFrameworkCore.Tools
+  //Microsoft.VisualStudio.Web.CodeGeneration.Design
   
 • sposób kompilacji aplikacji:
   należy zmienić parametr serwera w pliku appsettingjson na swój własny
