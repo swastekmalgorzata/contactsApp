@@ -1,7 +1,7 @@
 # contactsApp  
 • opis poszczególnych klas i metod:
   <br>
-  *Klasa TokenServices jest odpowiedzialna za generowanie JWT
+  +Klasa TokenServices jest odpowiedzialna za generowanie JWT
   <br>*AuthController odpowiada za logowanie, rejestrację użytkownika oraz generowanie tokenu
   <br>*Contacts zawiera w sobie CRUD dla kontaktu
   
