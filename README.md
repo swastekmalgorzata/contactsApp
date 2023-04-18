@@ -15,8 +15,4 @@
 • sposób kompilacji aplikacji:
  - należy zmienić parametr serwera w pliku appsettingjson na swój własny
  - aplikację wystarczy odpalić z poziomu VisualStudio,
- - zalecam zaczęcie od rejestracji użytkownika i zalogowania, wtedy zostanie wygenerowany token który wykorzystuję do autoryzacji aby mieć dostęp do dodawania pozycji, edcyji i usuwania,
-  
-- Item Zed
-  - Nested Item # indented 2 spaces
-* Item Alt 
+ - zalecam zaczęcie od rejestracji użytkownika i zalogowania, wtedy zostanie wygenerowany token który wykorzystuję do autoryzacji aby mieć dostęp do dodawania pozycji, edcyji i usuwania, 
