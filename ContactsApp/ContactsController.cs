@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ContactsApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
@@ -13,10 +9,10 @@ namespace ContactsApp
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContanctsController : ControllerBase
+    public class ContactsController : ControllerBase
     {
         private readonly ContactsContext _dbContext;
-        public ContanctsController(ContactsContext dbContext)
+        public ContactsController(ContactsContext dbContext)
         {
             _dbContext = dbContext;
         }
