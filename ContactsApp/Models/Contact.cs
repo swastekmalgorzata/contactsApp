@@ -22,8 +22,16 @@ namespace ContactsApp.Models
 
 		public string? Category { get; set; }
 		public DateTime Birthday { get; set; }
+		public void Update(Contact newContactData)
+		{
+			PhoneNumber = newContactData.PhoneNumber;
+			Name = newContactData.Name;
+			Surname = newContactData.Surname;
+			Email = newContactData.Email;
+			Category = newContactData.Category;
+			Birthday = newContactData.Birthday;
+		}
 
 	}
-
 }
 

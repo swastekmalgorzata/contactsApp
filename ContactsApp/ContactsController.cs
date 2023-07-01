@@ -20,25 +20,19 @@ namespace ContactsApp
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Contact>>> GetContacts()
         {
-
-            return await _dbContext.Contacts.ToListAsync();
+            return Ok(await _dbContext.Contacts.ToListAsync());
         }
 
         // GET api/<ContanctsController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Contact>> GetContact(int id)
         {
-            if (_dbContext.Contacts == null) {
-                return NotFound();
-
-            }
-            var contact = await _dbContext.Contacts.FindAsync(id);
+            var contact = await _dbContext.Contacts.FirstOrDefaultAsync(c => c.Id == id);
             if (contact == null)
             {
                 return NotFound();
             }
-            return contact;
-            
+            return Ok(contact);
         }
 
         // POST api/<ContanctsController>
@@ -47,7 +41,7 @@ namespace ContactsApp
         {
             _dbContext.Contacts.Add(contact);
             await _dbContext.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetContact), new { id = contact.Id }, contact);
+            return Created($"api/Contects/{contact.Id}", contact);
         }
 
         // PUT api/<ContanctsController>/5
@@ -59,41 +53,21 @@ namespace ContactsApp
                 return BadRequest();
             }
 
-            _dbContext.Entry(contact).State = EntityState.Modified;
-            try
+            var currentContact = await _dbContext.Contacts.FirstOrDefaultAsync(c => c.Id == id);
+            if (currentContact is null)
             {
-                await _dbContext.SaveChangesAsync();
+                return NotFound();
             }
-            catch(DbUpdateConcurrencyException)
-            {
-                if (!ContactExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            currentContact.Update(contact);
+            await _dbContext.SaveChangesAsync();
             return NoContent();
-        }
-
-        private bool ContactExists(long id)
-        {
-            return (_dbContext.Contacts?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
         // DELETE api/<ContanctsController>/5
         [HttpDelete("{id}"), Authorize]
         public async Task<IActionResult> Delete(int id)
         {
-            if (_dbContext.Contacts == null)
-            {
-                return NotFound();
-
-            }
-
-            var contact = await _dbContext.Contacts.FindAsync(id);
+            var contact = await _dbContext.Contacts.FirstOrDefaultAsync(c => c.Id == id);
             if (contact == null)
             {
                 return NotFound();

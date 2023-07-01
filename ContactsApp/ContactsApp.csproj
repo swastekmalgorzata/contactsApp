@@ -24,13 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Controllers\" />
     <None Remove="Models\" />
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Microsoft.EntityFrameworkCore" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 </Project>

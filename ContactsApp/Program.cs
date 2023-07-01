@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,7 +40,7 @@ builder.Services
             ValidIssuer = "ContactsApp" ,
             ValidAudience = "ContactsApp",
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes("!secret11111111!")),
+                "!secret11111111!"u8.ToArray()),
         };
     });
 
