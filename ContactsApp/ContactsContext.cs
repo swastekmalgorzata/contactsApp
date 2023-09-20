@@ -9,7 +9,7 @@ namespace ContactsApp
             : base (options)
             {
             }
-        public DbSet<Contact> Contacts { get; set; } = null!;
+        public DbSet<Contact> Contacts { get; set; }
         
     }
 }

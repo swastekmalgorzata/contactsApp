@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,11 +41,22 @@ builder.Services
             ValidIssuer = "ContactsApp" ,
             ValidAudience = "ContactsApp",
             IssuerSigningKey = new SymmetricSecurityKey(
-                "!secret11111111!"u8.ToArray()),
+                Encoding.UTF8.GetBytes("!secret11111111!")),
         };
     });
 
 builder.Services.AddScoped<TokenServices, TokenServices>();
+
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:8100").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                      });
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -57,6 +69,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseHttpsRedirection();
 

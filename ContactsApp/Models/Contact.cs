@@ -21,7 +21,7 @@ namespace ContactsApp.Models
 		public string? Password { get; set; }
 
 		public string? Category { get; set; }
-		public DateTime Birthday { get; set; }
+		public DateTime? Birthday { get; set; }
 		public void Update(Contact newContactData)
 		{
 			PhoneNumber = newContactData.PhoneNumber;

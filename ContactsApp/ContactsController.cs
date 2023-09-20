@@ -20,6 +20,7 @@ namespace ContactsApp
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Contact>>> GetContacts()
         {
+            var contacts = await _dbContext.Contacts.ToListAsync();
             return Ok(await _dbContext.Contacts.ToListAsync());
         }
 
@@ -36,7 +37,7 @@ namespace ContactsApp
         }
 
         // POST api/<ContanctsController>
-        [HttpPost, Authorize]
+        [HttpPost]
         public async Task<ActionResult<Contact>> PostContact(Contact contact)
         {
             _dbContext.Contacts.Add(contact);
