@@ -1,4 +1,5 @@
 ﻿using ContactsApp;
+using ContactsApp.Modules;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,11 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<ContactsContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ContactsContext")));
+builder.Services.AddDbContext<ApartmentsContext>(options =>
+  options.UseSqlServer(builder.Configuration.GetConnectionString("ApartmentsContext")));
 
 builder.Services.AddDbContext<UserContext>(options =>
-  options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext")));
+  options.UseSqlServer(builder.Configuration.GetConnectionString("ApartmentsContext")));
 
 builder.Services.AddIdentityCore<IdentityUser>(options =>
     {
@@ -69,7 +70,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.AddApartmentEnpoints();
+app.AddRentEndpoints();
 app.UseCors(MyAllowSpecificOrigins);
 
 app.UseHttpsRedirection();

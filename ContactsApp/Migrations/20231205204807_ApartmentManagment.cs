@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ContactsApp.Migrations.User
+namespace ContactsApp.Migrations
 {
-    public partial class init : Migration
+    public partial class ApartmentManagment : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

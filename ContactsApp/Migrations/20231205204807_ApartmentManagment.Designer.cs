@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace ContactsApp.Migrations.User
+namespace ContactsApp.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20230417100424_init")]
-    partial class init
+    [Migration("20231205204807_ApartmentManagment")]
+    partial class ApartmentManagment
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

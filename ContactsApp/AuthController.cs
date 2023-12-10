@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ContactsApp
 {
@@ -23,45 +18,37 @@ namespace ContactsApp
         }
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register(RegistrationRequest request)
+        public async Task<ActionResult> Register(RegistrationRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest("zle dane");
             }
-            var result = await _userManager.CreateAsync(
-                new IdentityUser { UserName = request.UserName, Email = request.Email },
-                request.Password
-            );
+            var result = await _userManager.CreateAsync(new IdentityUser { UserName = request.Email , Email = request.Email }, request.Password);
             if(result.Succeeded)
             {
                 request.Password = "";
-                return CreatedAtAction(nameof(Register), new { email = request.Email }, request);
+                return Ok();
             }
             foreach(var error in result.Errors)
             {
                 ModelState.AddModelError(error.Code, error.Description);
             }
             return BadRequest(ModelState);
-
         }
         [HttpPost]
-            [Route("login")]
-            public async Task<ActionResult<AuthResponse>> Authenticate([FromBody] AuthRequest request)
+        [Route("login")]
+        public async Task<ActionResult<LogInResponse>> LogIn([FromBody] LogInRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var userInDatabase = _context.Users.FirstOrDefault(u => u.Email == request.Email);
-            if (userInDatabase is null)
-            {
-                return Unauthorized();
-            }
+           
             var managedUser = await _userManager.FindByEmailAsync(request.Email);
             if(managedUser == null)
             {
-                return BadRequest("zly uzytkownik");
+                return BadRequest("User not found");
             }
 
             var isPasswordOk = await _userManager.CheckPasswordAsync(managedUser, request.Password);
@@ -71,16 +58,9 @@ namespace ContactsApp
             }
 
             
-            var accesToken = _tokenService.CreateToken(userInDatabase);
+            var accesToken = _tokenService.CreateToken(managedUser);
             await _context.SaveChangesAsync();
-            return Ok(
-                new AuthResponse
-                {
-                    Username = userInDatabase.UserName,
-                    Emial = userInDatabase.Email,
-                    Token = accesToken,
-                }
-                );
+            return Ok(new{Emial = managedUser.Email,Token = accesToken,});
         }
     }
 }

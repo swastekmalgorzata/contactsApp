@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.IdentityModel.Tokens.Jwt;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Globalization;
-using System.Net.Http;
 using System.Text;
 
 namespace ContactsApp
@@ -46,7 +41,6 @@ namespace ContactsApp
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString(CultureInfo.InvariantCulture)),
                     new Claim(ClaimTypes.NameIdentifier, user.Id),
-                    new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Email, user.Email)
                 };
                 return claims;
