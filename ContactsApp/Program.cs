@@ -72,6 +72,7 @@ if (app.Environment.IsDevelopment())
 }
 app.AddApartmentEnpoints();
 app.AddRentEndpoints();
+app.AddRoomateEndpoints();
 app.UseCors(MyAllowSpecificOrigins);
 
 app.UseHttpsRedirection();

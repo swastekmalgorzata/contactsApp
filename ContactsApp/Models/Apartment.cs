@@ -8,5 +8,6 @@ namespace ContactsApp
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
+
     }
 }

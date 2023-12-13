@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ContactsApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContactsApp
 {
@@ -10,6 +11,6 @@ namespace ContactsApp
 
         public DbSet<Apartment> Apartments => Set<Apartment>();
         public DbSet<Rent> Rents => Set<Rent>();
-
+        public DbSet<Roommate> Roommates => Set<Roommate>();
     }
 }

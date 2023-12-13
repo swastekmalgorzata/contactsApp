@@ -16,6 +16,6 @@ namespace ContactsApp
         public string Month { get; set; } = null!;
         public string Year { get; set; } = null!;
         public double? EvenBreakDown { get; set; }
-        public ICollection<RoomatePart>? CustomCostBreakDown { get; set; }
+        public ICollection<RoommatePart>? CustomCostBreakDown { get; set; }
     }
 }

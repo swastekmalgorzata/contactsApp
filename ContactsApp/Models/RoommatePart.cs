@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ContactsApp.Modules
 {
     [Owned]
-    public class RoomatePart
+    public class RoommatePart
     { 
         [ForeignKey("AspNetUsers")]
         public Guid UserId { get; set; }
